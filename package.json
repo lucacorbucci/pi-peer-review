@@ -1,0 +1,14 @@
+{
+  "name": "pi-ml-paper-review",
+  "version": "1.0.0",
+  "description": "Multi-agent peer review for ML papers using pi-subagents",
+  "keywords": ["pi-package", "pi-extension", "ml", "peer-review"],
+  "author": "",
+  "license": "MIT",
+  "pi": {
+    "extensions": ["./index.ts"]
+  },
+  "peerDependencies": {
+    "@mariozechner/pi-coding-agent": "*"
+  }
+}
