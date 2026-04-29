@@ -62,15 +62,15 @@ interface AgentFileInfo {
 // ============================================================================
 
 const DEFAULT_MODELS: Record<AgentName, string> = {
-  "ml-meta-reviewer": "anthropic/claude-sonnet-4",
-  "ml-optimist": "anthropic/claude-haiku-4-5",
-  "ml-critic": "deepseek/deepseek-v4-flash",
-  "ml-skeptic": "deepseek/deepseek-v4-flash",
-  "ml-roaster": "deepseek/deepseek-v4-flash",
-  "ml-security-sentinel": "anthropic/claude-haiku-4-5",
-  "ml-authenticity-inspector": "deepseek/deepseek-v4-flash",
-  "ml-literature-sleuth": "deepseek/deepseek-v4-flash",
-  "ml-visual-critic": "openai/gpt-4o",
+  "ml-meta-reviewer": "CHANGE-ME",
+  "ml-optimist": "CHANGE-ME",
+  "ml-critic": "CHANGE-ME",
+  "ml-skeptic": "CHANGE-ME",
+  "ml-roaster": "CHANGE-ME",
+  "ml-security-sentinel": "CHANGE-ME",
+  "ml-authenticity-inspector": "CHANGE-ME",
+  "ml-literature-sleuth": "CHANGE-ME",
+  "ml-visual-critic": "CHANGE-ME",
 };
 
 // ============================================================================
@@ -94,6 +94,48 @@ const FLAG_TO_AGENT: Record<string, AgentName> = {
   "--visual-model": "ml-visual-critic",
   "--vis-model": "ml-visual-critic",
 };
+
+// ============================================================================
+// Deploy bundled agent templates
+// ============================================================================
+
+/**
+ * Determine the directory where this extension module lives.
+ * Works both when installed as a pi package and when loaded via -e.
+ */
+function extensionDir(): string {
+  // In bundled pi packages, __dirname or import.meta.url resolves to the
+  // extension source. We use import.meta.url for ESM compatibility.
+  const url = new URL(".", import.meta.url);
+  return url.pathname;
+}
+
+/**
+ * Copy bundled agent .md templates from the extension's agents/ folder
+ * to the user's .pi/agents/ directory.
+ *
+ * Never overwrites existing files — respects user edits.
+ * Falls back gracefully if no templates are bundled.
+ */
+function deployAgentTemplates(agentsDir: string): void {
+  const extDir = extensionDir();
+  const templateDir = path.join(extDir, "agents");
+
+  ensureDir(agentsDir);
+
+  if (!fs.existsSync(templateDir)) {
+    return; // no bundled templates — the extension will create minimal agents
+  }
+
+  for (const file of fs.readdirSync(templateDir)) {
+    if (!file.endsWith(".md")) continue;
+    const target = path.join(agentsDir, file);
+    if (fs.existsSync(target)) continue; // respect user edits
+    const src = path.join(templateDir, file);
+    const content = fs.readFileSync(src, "utf-8");
+    fs.writeFileSync(target, content, "utf-8");
+  }
+}
 
 // ============================================================================
 // Agent file I/O
@@ -315,6 +357,9 @@ export default function (pi: ExtensionAPI) {
 
       const agentsDir = path.join(ctx.cwd, ".pi", "agents");
       ensureDir(agentsDir);
+
+      // First, deploy bundled agent templates (rich system prompts) if available
+      deployAgentTemplates(agentsDir);
 
       // Collect all agent names
       const allAgentNames = [...REVIEWER_AGENTS, META_AGENT];
