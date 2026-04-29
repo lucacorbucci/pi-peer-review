@@ -1,7 +1,7 @@
 ---
 name: ml-critic
 description: Rigorous ML critic - deeply knowledgeable, hard to please
-model: inclusionai/ling-2.6-1t:free
+model: CHANGE-ME
 tools: read,bash,grep
 thinking: high
 systemPromptMode: replace

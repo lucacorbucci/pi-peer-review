@@ -1,7 +1,7 @@
 ---
 name: ml-roaster
 description: Brutal ML roaster - cynical, sarcastic, cuts through academic fluff
-model: inclusionai/ling-2.6-1t:free
+model: CHANGE-ME
 tools: read,grep
 thinking: high
 systemPromptMode: replace

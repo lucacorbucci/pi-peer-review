@@ -1,7 +1,7 @@
 ---
 name: ml-meta-reviewer
 description: Meta-Reviewer / Area Chair - synthesizes sub-reviewer reports into final decision
-model: inclusionai/ling-2.6-1t:free
+model: CHANGE-ME
 tools: read,grep
 thinking: high
 systemPromptMode: replace

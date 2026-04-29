@@ -1,7 +1,7 @@
 ---
 name: ml-skeptic
 description: Big picture ML skeptic - cares about impact, scalability, and generalization
-model: inclusionai/ling-2.6-1t:free
+model: CHANGE-ME
 tools: read,grep
 thinking: medium
 systemPromptMode: replace

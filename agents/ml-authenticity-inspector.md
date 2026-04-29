@@ -1,7 +1,7 @@
 ---
 name: ml-authenticity-inspector
 description: Authenticity Inspector - detects AI-generated academic writing and LLM tells
-model: inclusionai/ling-2.6-1t:free
+model: CHANGE-ME
 tools: read,grep
 thinking: medium
 systemPromptMode: replace

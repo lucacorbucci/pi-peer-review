@@ -1,7 +1,7 @@
 ---
 name: ml-literature-sleuth
 description: Literature Sleuth - cross-references citations against real literature, checks for hallucinations
-model: inclusionai/ling-2.6-1t:free
+model: CHANGE-ME
 tools: read,grep,web_search
 thinking: high
 systemPromptMode: replace

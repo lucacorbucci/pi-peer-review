@@ -1,7 +1,7 @@
 ---
 name: ml-optimist
 description: Optimistic ML reviewer - values novel ideas and empirical rigor
-model: inclusionai/ling-2.6-1t:free
+model: CHANGE-ME
 tools: read,grep
 thinking: low
 systemPromptMode: replace

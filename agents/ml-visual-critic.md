@@ -1,7 +1,7 @@
 ---
 name: ml-visual-critic
 description: Visual Critic - evaluates figures, tables, and formatting from the compiled PDF
-model: inclusionai/ling-2.6-1t:free
+model: CHANGE-ME
 tools: read_pdf,bash
 thinking: medium
 systemPromptMode: replace

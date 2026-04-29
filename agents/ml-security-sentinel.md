@@ -1,7 +1,7 @@
 ---
 name: ml-security-sentinel
 description: Security Sentinel - scans for malicious payloads, prompt injections, and adversarial content
-model: inclusionai/ling-2.6-1t:free
+model: CHANGE-ME
 tools: read,grep
 thinking: medium
 systemPromptMode: replace
